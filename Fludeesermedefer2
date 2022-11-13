@@ -1,0 +1,44 @@
+#x and y are arrays of the x coordinates and corrosponding y coordinates
+import numpy as np
+from itertools import combinations_with_replacement
+import itertools
+from itertools import permutations
+from itertools import product
+
+punto_inicial = [100,500]
+punto_final = [2200,200]
+#punto_1 = [1000,431.26]
+#punto_2 = [1105, 109.2]
+
+def get_equation(x,y):
+    degree = 3
+    coefs, res, _, _, _ = np.polyfit(x,y,degree, full = True)
+    ffit = np.poly1d(coefs)
+    #print (ffit)
+ 
+    return ffit
+
+
+x = np.linspace(punto_inicial[0],punto_final[0], num=50)
+y = np.linspace(punto_inicial[1],punto_final[1], num=50)
+
+xito = [1,1]
+print("x ---------------")
+
+unique_combinations = []
+ 
+unique_combinations = list(list(zip(x, element))
+                           for element in product(y, repeat = len(xito)))
+ 
+
+    
+for i in range(len(unique_combinations)):    
+    x = np.array([punto_inicial[0],unique_combinations[i][0][0],unique_combinations[i][1][0],punto_final[0]])
+    y = np.array([punto_inicial[1],unique_combinations[i][0][1], unique_combinations[i][1][1],punto_final[1]])
+    ffit = get_equation(x, y)
+    if ffit[3] > 0.0000001:
+        print(ffit)
+
+#for x in range(punto_inicial[0],punto_final[1]):
+#    for y in range(punto_inicial[1], punto[1]):
+#        punto_1
