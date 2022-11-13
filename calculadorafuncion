@@ -1,0 +1,22 @@
+import numpy as np
+from itertools import combinations_with_replacement
+import itertools
+from itertools import permutations
+from itertools import product
+
+punto_inicial = [100,500]
+punto_final = [2200,200]
+punto_1 = [999.989999,431.26679]
+punto_2 = [1105.00001, 109.2001]
+
+x = np.array([punto_inicial[0],punto_1[0],punto_2[0],punto_final[0]])
+y = np.array([punto_inicial[1],punto_1[1], punto_2[1],punto_final[1]])
+
+def get_equation(x,y):
+    degree = 3
+    coefs, res, _, _, _ = np.polyfit(x,y,degree, full = True)
+    ffit = np.poly1d(coefs)
+    print (ffit)
+ 
+    return ffit
+get_equation(x, y)
